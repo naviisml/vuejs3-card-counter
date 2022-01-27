@@ -1,0 +1,10 @@
+# Folders
+node_modules
+dist
+dist-ssr
+.vscode/
+
+# Files
+*.DS_Store
+*.local
+package-lock.json
