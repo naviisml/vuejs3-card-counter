@@ -2,8 +2,14 @@
 	<div class="container py-3">
 		<h2>Blackjack Counter</h2>
 		<p>Count: {{ count }}</p>
-		<p>True Count: {{ trueCount }}</p>
-		
+		<p>
+			True Count: {{ trueCount }}
+
+			<span v-if="trueCount >= 3" class="tooltip tooltip-bottom tooltip-medium color-danger" aria-label="With a true count above 3, we recommend taking insurance.">
+				<i class="fas fa-exclamation-triangle"></i>
+			</span>
+		</p>
+
 		<div class="d-flex flex-column align-items-center">
 			<div class="py-5">
 				<button class="btn btn-rounded btn-green mx-2" @click="increaseCount">2 - 6</button>
@@ -24,8 +30,6 @@
 			</div>
 
 			<button class="btn btn-block" @click="resetCount">Reset</button>
-			
-			<p v-if="trueCount >= 3">You should take insurance.</p>
 		</div>
 	</div>
 </template>
