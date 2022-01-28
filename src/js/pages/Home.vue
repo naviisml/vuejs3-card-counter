@@ -1,5 +1,5 @@
 <template>
-	<div class="container py-3">
+	<div class="container py-5">
 		<h2>Blackjack Counter</h2>
 		<p>Count: {{ count }}</p>
 		<p>
