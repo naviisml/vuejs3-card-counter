@@ -33,7 +33,7 @@
 				<button class="btn btn-rounded btn-green mx-2" @click="increaseCount">2 - 6</button>
 				<button class="btn btn-rounded btn-green mx-2">7 - 9</button>
 				<button class="btn btn-rounded btn-green mx-2" @click="decreaseCount">10 - A</button>
-				<p class="hint text-center py-3">Dealt Card</p>
+				<p class="hint text-center pt-2">Dealt Card</p>
 			</div>
 		</div>
 
