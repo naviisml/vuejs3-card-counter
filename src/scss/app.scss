@@ -5,6 +5,11 @@
  * Copyrights (c) navel.dev 2020
  */
 
+
+@import 'config';
+
 @import '@naviisml/ui/src/scss/app.scss';
 
-@import 'reboot/reboot';
+@import 'base/base';
+
+@import 'components/components';

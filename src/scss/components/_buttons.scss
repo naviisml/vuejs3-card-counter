@@ -1,0 +1,30 @@
+.btn
+{
+	font-weight: bold;
+
+	&.btn-green
+	{
+		border: 2px solid rgb(var(--color-dark-green));
+		background-color: rgb(var(--color-light-green));
+		color: rgb(var(--color-light-green-foreground));
+	}
+	
+	&.btn-transparent
+	{
+		background-color: transparent;
+		color: rgb(var(--color-light));
+		border-color: transparent;
+	}
+	
+	&.btn-rounded {
+		padding: 14px 0;
+		width: 60px;
+		height: 60px;
+		text-align: center;
+	}
+}
+
+.hint
+{
+	font-size: 13px;
+}

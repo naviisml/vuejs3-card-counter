@@ -1,35 +1,32 @@
 <template>
-	<div class="d-flex flex-column align-items-center">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="card-content">
-					Count: {{ count }}
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="card-content">
-					True Count: {{ trueCount }}
-				</div>
-			</div>
-		</div>
-
-		<div class="py-3">
-			<h2>Cards</h2>
-			<button class="btn btn-rounded btn-green mx-2" @click="increaseCount">2 - 6</button>
-			<button class="btn btn-rounded btn-green mx-2">7 - 9</button>
-			<button class="btn btn-rounded btn-green mx-2" @click="decreaseCount">10 - A</button>
-		</div>
-
-		<div class="py-3">
-			<h2>Decks</h2>
-			<button class="btn btn-transparent" @click="decreaseDeck">-</button>
-			{{ decks }}
-			<button class="btn btn-transparent" @click="increaseDeck">+</button>
-		</div>
-
-		<button @click="resetCount">Reset</button>
+	<div class="container py-3">
+		<h2>Blackjack Counter</h2>
+		<p>Count: {{ count }}</p>
+		<p>True Count: {{ trueCount }}</p>
 		
-		<p v-if="trueCount >= 3">You should take insurance.</p>
+		<div class="d-flex flex-column align-items-center">
+			<div class="py-5">
+				<button class="btn btn-rounded btn-green mx-2" @click="increaseCount">2 - 6</button>
+				<button class="btn btn-rounded btn-green mx-2">7 - 9</button>
+				<button class="btn btn-rounded btn-green mx-2" @click="decreaseCount">10 - A</button>
+				<p class="hint text-center py-3">Dealt Card</p>
+			</div>
+
+			<div class="text-center py-5">
+				<button class="btn btn-transparent" @click="decreaseDeck">
+					<i class="far fa-minus"></i>
+				</button>
+				{{ decks }}
+				<button class="btn btn-transparent" @click="increaseDeck">
+					<i class="far fa-plus"></i>
+				</button>
+				<p class="hint text-center">Total Decks In Game</p>
+			</div>
+
+			<button class="btn btn-block" @click="resetCount">Reset</button>
+			
+			<p v-if="trueCount >= 3">You should take insurance.</p>
+		</div>
 	</div>
 </template>
 
@@ -76,11 +73,3 @@
 		},
 	}
 </script>
-
-<style scoped>
-.btn-rounded {
-	width: 70px;
-	height: 70px;
-	text-align: center;
-}
-</style>
