@@ -1,15 +1,18 @@
 <template>
-	<div class="d-flex flex-column flex-fill align-items-center">
-		<div class="py-5">
-			<h2>Blackjack Counter</h2>
+	<div class="wrapcontent d-flex flex-column align-items-center py-5">
+		<div class="flex-box">
+			<h2>
+				<span class="mr-2"><i class="far fa-dice"></i></span>
+				Blackjack Counter
+			</h2>
 		</div>
 
-		<div class="py-5">
+		<div class="flex-box py-3">
 			<p>Count: {{ count }}</p>
 			<p>True Count: {{ trueCount }}</p>
 		</div>
 
-		<div class="py-5">
+		<div class="flex-grow-1 py-5">
 			<div> 
 				<button class="btn btn-rounded btn-green mx-2" @click="increaseCount">2 - 6</button>
 				<button class="btn btn-rounded btn-green mx-2">7 - 9</button>
@@ -18,7 +21,7 @@
 			<p class="hint text-center py-3">Dealt Card</p>
 		</div>
 
-		<div class="text-center py-5">
+		<div class="flex-grow-1 text-center py-5">
 			<div>
 				<button class="btn btn-transparent" @click="decreaseDeck">
 					<i class="far fa-minus"></i>
@@ -37,7 +40,7 @@
 
 <script>
 	export default {
-		name: 'Home',
+		name: 'VCounter',
 
 		data () {
 			return {
@@ -78,3 +81,10 @@
 		},
 	}
 </script>
+
+<style scoped>
+.flex-box {
+	position: relative;
+	width: 100%;
+}
+</style>

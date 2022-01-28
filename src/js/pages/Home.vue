@@ -1,17 +1,17 @@
 <template>
 	<div class="container">
-		<counter />
+		<v-counter />
 	</div>
 </template>
 
 <script>
-	import Counter from '../components/Counter'
+	import VCounter from '../components/VCounter.vue'
 
 	export default {
 		name: 'Home',
 
-		componens: {
-			Counter
+		components: {
+			VCounter
 		},
 	}
 </script>
