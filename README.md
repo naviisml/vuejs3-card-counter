@@ -2,6 +2,8 @@
 
 This project is a Vuejs card counter for blackjack, it currently uses the [Hi-Low](https://en.wikipedia.org/wiki/Card_counting) method, with plans to implement the Fab 4 Surrenders and Illustrious 18 rules.
 
+You can see this live @ https://bj-counter.navel.dev
+
 ## Features
 
 - Vite
