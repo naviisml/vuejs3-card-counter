@@ -10,7 +10,7 @@
 				<div class="col-xs-6 col-md-6">
 					<div class="card-content">
 						<small>True Count</small>
-						<h2>{{ trueCount }}</h2>
+						<h2>0</h2>
 					</div>
 				</div>
 				<div class="col-xs-6 col-md-6">
@@ -40,8 +40,8 @@
 	</div>
 
 	<div class="flex-box d-flex">
-		<button class="btn btn-danger btn-block me-1">Reset Deck</button>
-		<button class="btn btn-block ms-1">New Hand</button>
+		<button class="btn btn-danger btn-block me-1" v-on:click="this.attemptResetCount">Reset Deck</button>
+		<button class="btn btn-block ms-1" v-on:click="this.resetHand">New Hand</button>
 	</div>
 </template>
 
@@ -59,13 +59,16 @@
 		data () {
 			return {
 				cards: cards,
-				count: 0,
-				trueCount: 0,
-				decks: 2
+				drawnCards: [],
+				hand: {
+					player: null,
+					dealer: null
+				},
+				decks: 2,
 			}
 		},
-
-		created() {
+		
+		mounted() {
 			this.resetCount()
 		},
 
@@ -86,8 +89,8 @@
 				}
 			},
 			resetCount() {
-				this.count = 0
-				this.updateTrueCount()
+				this.resetHand()
+				this.drawnCards = []
 			},
 			decreaseDeck() {
 				if (this.decks > 1)

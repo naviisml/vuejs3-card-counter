@@ -3,9 +3,7 @@
 		<div class="wrapcontent d-flex flex-column align-items-center py-5">
 			<navigation />
 			
-			<transition name="fade">
-				<router-view />
-			</transition>
+			<router-view />
 		</div>
 	</div>
 </template>
