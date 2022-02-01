@@ -1,7 +1,7 @@
 <template>
 	<div class="flex-box py-3">
 		<h3>Dealer Card</h3>
-		<slider :data="cards" />
+		<slider :data="cards" :action="this.addDealerCard" />
 	</div>
 
 	<div class="d-flex flex-box flex-grow-1 justify-content-center flex-column">
@@ -25,7 +25,7 @@
 
 	<div class="flex-box py-3">
 		<h3>Player Cards (2)</h3>
-		<slider :data="cards" />
+		<slider :data="cards" :action="this.addPlayerCard" />
 	</div>
 
 	<div class="flex-box text-center py-3">
@@ -73,13 +73,15 @@
 		},
 
 		methods: {
-			decreaseCount() {
-				this.count -= 1
-				this.updateTrueCount()
+			addDealerCard(card) {
+				console.log("Add drawn card: (Dealer)", card)
 			},
-			increaseCount() {
-				this.count += 1
-				this.updateTrueCount()
+			addPlayerCard(card) {
+				console.log("Add drawn card: (Player)", card)
+			},
+			resetHand() {
+				this.hand.player = []
+				this.hand.dealer = []
 			},
 			attemptResetCount() {
 				let text = "Are you sure you want to reset the count?"

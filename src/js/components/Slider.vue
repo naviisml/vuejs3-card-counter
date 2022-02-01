@@ -1,16 +1,16 @@
 <template>
 	<div class="slider">
-		<div class="slider-container">
-			<li class="slide" v-for="(value, key) in data">
+		<ul class="slider-container">
+			<li class="slide" v-for="(value, key) in data" v-on:click="this.action(key)">
 				<div class="d-flex flex-column" style="height: 100%">
 					<strong class="text-left">{{ value }}</strong>
-					<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-gray">
+					<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
 						<i class="far fa-dice"></i>
 					</h2>
 					<strong class="text-right">{{ value }}</strong>
 				</div>
 			</li>
-		</div>
+		</ul>
 	</div>
 </template>
 
@@ -21,6 +21,10 @@
 		props: {
 			data: {
 				type: Object,
+				default: null
+			},
+			action: {
+				type: Function,
 				default: null
 			}
 		},
@@ -36,18 +40,11 @@
 
 		mounted() {
 			this.setupSlide()
-
-			// Touchscreen Fix
-			if ((('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) == true) {
-				this.enableTouchscreen()
-			}
-
-			// Scrollwheel fix
-			this.container.addEventListener('wheel', this.handleScroll, false)
+			//this.container.addEventListener('wheel', this.handleScroll, false)
 		},
 
 		destroyed() {
-			this.container.removeEventListener('wheel', this.handleScroll, false)
+			//this.container.removeEventListener('wheel', this.handleScroll, false)
 		},
 
 		methods: {
@@ -68,9 +65,6 @@
 				} else {
 					this.slideToElement(this.slide - 1)
 				}
-			},
-			enableTouchscreen() {
-				this.slider.style.overflowX = "scroll"
 			},
 			slideToElement(slideId) {
 				let slide = this.items[slideId]
@@ -102,26 +96,26 @@
 <style scoped>
 .slider {
 	position: relative;
+	overflow: auto;
 	width: 100%;
 }
-
-.slide-container {
+.slider-container {
 	position: relative;
-	height: 100%;
-	width: auto;
-	overflow: auto;
+	height: auto;
+	padding: 0;
+	margin: 0;
 }
 .slide {
 	background: white;
 	color: black;
 	border-radius: 5px;
-	padding: 12px;
-	height: 100px;
-	width: 75px;
-	margin: 10px;
+	padding: 4px;
+	height: 55px;
+	width: 40px;
+	margin: 5px;
+	font-size: 12px;
 	display: inline-block;
 }
-
 .slide:hover {
 	box-shadow: 0px 0px 16px 0px rgba(19, 107, 255, 1);
 }
