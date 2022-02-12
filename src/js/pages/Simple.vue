@@ -66,11 +66,9 @@
 		methods: {
 			decreaseCount() {
 				this.count -= 1
-				this.updateTrueCount()
 			},
 			increaseCount() {
 				this.count += 1
-				this.updateTrueCount()
 			},
 			attemptResetCount() {
 				let text = "Are you sure you want to reset the count?"
@@ -81,20 +79,26 @@
 			},
 			resetCount() {
 				this.count = 0
-				this.updateTrueCount()
 			},
 			decreaseDeck() {
 				if (this.decks > 1)
 					this.decks -= 1
-				this.updateTrueCount()
 			},
 			increaseDeck() {
 				this.decks += 1
-				this.updateTrueCount()
 			},
 			updateTrueCount() {
 				this.trueCount = (this.count / this.decks).toFixed(2)
 			},
 		},
+
+		watch: {
+			"current.count": function (val) {
+				this.updateTrueCount()
+			},
+			"current.decks": function (val) {
+				this.updateTrueCount()
+			},
+		}
 	}
 </script>
