@@ -1,8 +1,8 @@
 <template>
 	<div class="slider">
-		<ul class="slider-container">
+		<ul class="slider-container playcard-container">
 			<li class="slide" v-for="(value, key) in data" v-on:click="this.action(key)">
-				<div class="d-flex flex-column" style="height: 100%">
+				<div class="playcard d-flex flex-column">
 					<strong class="text-left">{{ value }}</strong>
 					<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
 						<i class="far fa-dice"></i>
@@ -105,18 +105,8 @@
 	padding: 0;
 	margin: 0;
 }
+
 .slide {
-	background: white;
-	color: black;
-	border-radius: 5px;
-	padding: 4px;
-	height: 55px;
-	width: 40px;
-	margin: 5px;
-	font-size: 12px;
 	display: inline-block;
-}
-.slide:hover {
-	box-shadow: 0px 0px 16px 0px rgba(19, 107, 255, 1);
 }
 </style>
