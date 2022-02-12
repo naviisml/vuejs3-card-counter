@@ -1,4 +1,11 @@
 <template>
+	<!-- Options -->
+	<div class="flex-box d-flex">
+		<button class="btn btn-green btn-block me-1" v-on:click="this.undo"><i class="fas fa-undo"></i> Undo</button>
+		<button class="btn btn-green btn-block me-1" v-on:click="this.redo"><i class="fas fa-redo"></i> Redo</button>
+	</div>
+
+	<!-- Dealer Cards -->
 	<div class="flex-box py-3">
 		<h3>Dealer Card</h3>
 		<slider :data="cards" :action="this.addDealerCard" />
@@ -9,6 +16,11 @@
 		<!-- Cards -->
 		<li class="d-inline-block" v-for="(value, key) in current.hand.dealer">
 			<div class="playcard d-flex flex-column">
+				<!-- Remove -->
+				<button class="btn btn-close btn-danger" v-on:click="this.removeDealerCard(key)">
+					<i class="fas fa-times"></i>
+				</button>
+				
 				<!-- Information -->
 				<strong class="text-left">{{ value }}</strong>
 				<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
@@ -44,6 +56,11 @@
 		<!-- Cards -->
 		<li class="d-inline-block" v-for="(value, key) in current.hand.player">
 			<div class="playcard d-flex flex-column">
+				<!-- Remove -->
+				<button class="btn btn-close btn-danger" v-on:click="this.removePlayerCard(key)">
+					<i class="fas fa-times"></i>
+				</button>
+				
 				<!-- Information -->
 				<strong class="text-left">{{ value }}</strong>
 				<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
@@ -93,23 +110,49 @@
 		data () {
 			return {
 				cards: cards,
-				drawnCards: [],
-				hand: {
-					player: null,
-					dealer: null
+				current: {
+					drawnCards: [],
+					hand: {
+						player: [],
+						dealer: []
+					},
+					decks: 2,
+					count: 0,
+					trueCount: 0,
 				},
-				decks: 2,
+				actions: [],
+				actionCount: 0
 			}
-		},
-		
-		mounted() {
-			this.resetCount()
 		},
 
 		methods: {
+			/**
+			 * Add a specific card to dealer's hand
+			 */
 			addDealerCard(card) {
-				console.log("Add drawn card: (Dealer)", card)
+				if (!this.cards[card])
+					return 0, console.error("Card doesn't exist:", card)
+				
+				// add the card
+				this.addDeckCard(card)
+				this.current.hand.dealer.push(card)
 			},
+			/**
+			 * Remove a specific card from the dealer's hand
+			 */
+			removeDealerCard(key) {
+				let card = this.current.hand.dealer[key]
+				
+				// check if the card exists
+				if (!card)
+					return 0, console.error("Card doesn't exist:", card)
+				
+				this.removeDeckCard(card)
+				this.current.hand.dealer.splice(key, 1)
+			},
+			/**
+			 * Add a specific card to player's hand
+			 */
 			addPlayerCard(card) {
 				if (!this.cards[card])
 					return 0, console.error("Card doesn't exist:", card)
@@ -118,9 +161,20 @@
 				this.addDeckCard(card)
 				this.current.hand.player.push(card)
 			},
-			resetHand() {
-				this.hand.player = []
-				this.hand.dealer = []
+			/**
+			 * Remove a specific card from the player's hand
+			 */
+			removePlayerCard(key) {
+				let card = this.current.hand.player[key]
+
+				// check if the card exists
+				if (!card)
+					return 0, console.error("Card doesn't exist:", card)
+				
+				// remove the card
+				this.removeDeckCard(card)
+				this.current.hand.player.splice(key, 1)
+			},
 			/**
 			 * Add a specific card to the list
 			 */
@@ -136,6 +190,25 @@
 					this.current.count += 1
 				else if (!(card >= 7 && card <= 9))
 					this.current.count -= 1
+			},
+			/**
+			 * Remove a specific card from the list
+			 */
+			removeDeckCard(card) {
+				if (!this.current.drawnCards[card])
+					return 0, console.error("Card doesn't exist:", card)
+
+				// Decrease or remove a card from the drawn deck
+				if (this.current.drawnCards[card] > 1)
+					this.current.drawnCards[card] -= 1
+				else
+					this.current.drawnCards.splice(card, 1)
+
+				// Re-calculate the count without this card
+				if (card >= 2 && card <= 6)
+					this.current.count -= 1
+				else if (!(card >= 7 && card <= 9))
+					this.current.count += 1
 			},
 			/**
 			 * Re-calculate the true count
@@ -154,9 +227,6 @@
 					this.resetCount()
 				}
 			},
-			resetCount() {
-				this.resetHand()
-				this.drawnCards = []
 			/**
 			 * Increate the decks
 			 */
@@ -170,7 +240,79 @@
 				if (this.current.decks > 1)
 					this.current.decks -= 1
 			},
+			/**
+			 * Reset the current hand
+			 */
+			resetHand() {
+				if (this.current.hand.player.length == 0 && this.current.hand.dealer.length == 0)
+					return false
+				
+				// save to the actions array
+				this.log({
+					count: this.current.count,
+					trueCount: this.current.trueCount,
+					drawnCards: [...this.current.drawnCards],
+					hand: {
+						player: [...this.current.hand.player],
+						dealer: [...this.current.hand.dealer]
+					},
+					decks: this.current.decks
+				})
+
+				// reset the arrays
+				this.current.hand.player = []
+				this.current.hand.dealer = []
 			},
+			/**
+			 * Reset the current count
+			 */
+			resetCount() {
+				// save to the actions array
+				this.log({
+					count: this.current.count,
+					trueCount: this.current.trueCount,
+					drawnCards: [...this.current.drawnCards],
+					hand: {
+						player: [...this.current.hand.player],
+						dealer: [...this.current.hand.dealer]
+					},
+					decks: this.current.decks
+				})
+
+				// reset the data
+				this.current.count = 0
+				this.current.drawnCards = []
+			},
+			/**
+			 * Log
+			 */
+			log(data) {
+				this.actions.splice(this.actionCount, 0, data)
+				this.actionCount += 1
+			},
+			/**
+			 * Undo
+			 */
+			undo () {
+				let item = this.actions[this.actionCount - 1]
+
+				if (!item)
+					return false
+				
+				this.current = item
+				this.actionCount -= 1
+			},
+			/**
+			 * Redo
+			 */
+			redo () {
+				let item = this.actions[this.actionCount + 1]
+
+				if (!item)
+					return false
+				
+				this.current = item
+				this.actionCount += 1
 			},
 		},
 
