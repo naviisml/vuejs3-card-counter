@@ -300,6 +300,7 @@
 					return false
 				
 				this.current = item
+				this.updateTrueCount()
 				this.actionCount -= 1
 			},
 			/**
@@ -312,6 +313,7 @@
 					return false
 				
 				this.current = item
+				this.updateTrueCount()
 				this.actionCount += 1
 			},
 		},
