@@ -1,4 +1,5 @@
 <template>
+	<!-- Current Count -->
 	<div class="flex-box">
 		<div class="card card-soft">
 			<div class="row">
@@ -12,14 +13,15 @@
 					<div class="card-content">
 						<small>Odds</small>
 						<h2 v-if="trueCount >= 3">High</h2>
-						<h2 v-if="trueCount <= 2 && trueCount >= 0">Normal</h2>
-						<h2 v-if="trueCount < 0">Low</h2>
+						<h2 v-else-if="trueCount >= 0">Normal</h2>
+						<h2 v-else>Low</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<!-- Card Options -->
 	<div class="d-flex flex-grow-1 align-items-center">
 		<div class="flex-box">
 			<button class="btn btn-rounded btn-green mx-2" @click="increaseCount">2 - 6</button>
@@ -29,6 +31,7 @@
 		</div>
 	</div>
 
+	<!-- Deck Options -->
 	<div class="text-center py-3">
 		<button class="btn btn-transparent" @click="decreaseDeck">
 			<i class="far fa-minus"></i>
@@ -40,6 +43,7 @@
 		<p class="hint">Total Decks In Game</p>
 	</div>
 
+	<!-- Main Options -->
 	<button class="btn btn-block" @click="attemptResetCount">Reset</button>
 </template>
 
