@@ -99,6 +99,7 @@
 
 	export default {
 		name: 'Advanced',
+		//guards: 'auth',
 
 		components: {
 			Slider,
