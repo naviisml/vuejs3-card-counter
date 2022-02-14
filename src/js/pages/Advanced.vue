@@ -1,10 +1,4 @@
 <template>
-	<!-- Options -->
-	<div class="flex-box d-flex">
-		<button class="btn btn-green btn-block me-1" v-on:click="this.undo"><i class="fas fa-undo"></i> Undo</button>
-		<button class="btn btn-green btn-block me-1" v-on:click="this.redo"><i class="fas fa-redo"></i> Redo</button>
-	</div>
-
 	<!-- Dealer Cards -->
 	<div class="flex-box py-3">
 		<h3>Dealer Card</h3>
@@ -94,9 +88,12 @@
 		<button class="btn btn-danger btn-block me-1" v-on:click="this.attemptResetCount">Reset Deck</button>
 		<button class="btn btn-block ms-1" v-on:click="this.resetHand">New Hand</button>
 	</div>
+
+	<snackbars />
 </template>
 
 <script>
+	import Snackbars from '/src/js/components/Snackbar/Snackbars.vue'
 	import Slider from '/src/js/components/Slider.vue'
 	import cards from '/src/data/cards.json'
 
@@ -104,7 +101,8 @@
 		name: 'Advanced',
 
 		components: {
-			Slider
+			Slider,
+			Snackbars
 		},
 
 		data () {
@@ -287,6 +285,20 @@
 			 * Log
 			 */
 			log(data) {
+				this.$store.dispatch('snackbar/add', { 
+					options: { 
+						title: 'Undo',
+						timeout: 3000
+					},
+					actions: [
+						{
+							title: 'Undo',
+							type: 'success',
+							callback: this.undo
+						}
+					]
+				})
+				
 				this.actions.splice(this.actionCount, 0, data)
 				this.actionCount += 1
 			},
