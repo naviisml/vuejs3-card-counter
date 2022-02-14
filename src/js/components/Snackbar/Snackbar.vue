@@ -1,12 +1,14 @@
 <template>
-	<div class="snackbar d-flex flex-row">
-		<p class="p-1">{{ data.title }}</p>
+	<div class="snackbar">
+		<div class="d-flex flex-row">
+			<p class="p-1">{{ data.title }}</p>
 
-		<div class="d-inline-block ml-auto">
-			<div v-for="(action, key) in actions" :key="key">
-				<button @click="this.close(action.callback)" class="btn btn-small btn-soft" :class="{[`btn-${action.type}`]: action.type, 'btn-light': !action.type}">
-					{{ action.title }}
-				</button>
+			<div class="d-inline-block ml-auto">
+				<div v-for="(action, key) in actions" :key="key">
+					<button @click="this.close(action.callback)" class="btn btn-small btn-soft" :class="{[`btn-${action.type}`]: action.type, 'btn-light': !action.type}">
+						{{ action.title }}
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
