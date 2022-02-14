@@ -1,5 +1,5 @@
 <template>
-	<div class="snackbar-container flex-box" v-for="(snackbar, key) in snackbars" :key="key">
+	<div class="snackbar-container flex-box p-3" v-for="(snackbar, key) in snackbars" :key="key">
 		<snackbar :data="snackbar.options" :actions="snackbar.actions" />
 	</div>
 </template>
