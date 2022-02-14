@@ -93,10 +93,10 @@
 		},
 
 		watch: {
-			"current.count": function (val) {
+			"count": function (val) {
 				this.updateTrueCount()
 			},
-			"current.decks": function (val) {
+			"decks": function (val) {
 				this.updateTrueCount()
 			},
 		}
