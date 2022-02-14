@@ -5,6 +5,7 @@ import { store } from './store'
 import App from './components/App.vue'
 
 import '../scss/app.scss'
+import './plugins'
 
 export const app = createApp(App)
 
