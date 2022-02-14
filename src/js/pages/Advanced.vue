@@ -16,11 +16,11 @@
 				</button>
 				
 				<!-- Information -->
-				<strong class="text-left">{{ value }}</strong>
+				<strong class="text-left">{{ cards[value] ?? value }}</strong>
 				<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
 					<i class="far fa-dice"></i>
 				</h2>
-				<strong class="text-right">{{ value }}</strong>
+				<strong class="text-right">{{ cards[value] ?? value }}</strong>
 			</div>
 		</li>
 	</div>
@@ -56,11 +56,11 @@
 				</button>
 				
 				<!-- Information -->
-				<strong class="text-left">{{ value }}</strong>
+				<strong class="text-left">{{ cards[value] ?? value }}</strong>
 				<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
 					<i class="far fa-dice"></i>
 				</h2>
-				<strong class="text-right">{{ value }}</strong>
+				<strong class="text-right">{{ cards[value] ?? value }}</strong>
 			</div>
 		</li>
 	</div>
