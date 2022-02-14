@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { nextTick } from 'vue'
 import { getGuards, callGuards } from './guards'
 
@@ -21,7 +21,7 @@ function createRouterInstance() {
 	let instance
 
 	instance = createRouter({
-		history: createWebHistory(),
+		history: createWebHashHistory(),
 		routes
 	})
 
