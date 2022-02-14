@@ -8,7 +8,7 @@ export default [
 		component: Simple
 	},
 	{
-		path: '/advanced',
+		path: '/',
 		name: 'advanced',
 		component: Advanced
 	},
