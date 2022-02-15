@@ -1,7 +1,7 @@
 <template>
 	<div class="snackbar">
 		<div class="d-flex flex-row">
-			<p class="p-1">{{ data.title }}</p>
+			<p class="p-1">{{ options.title }}</p>
 
 			<div class="d-inline-block ml-auto">
 				<div v-for="(action, key) in actions" :key="key">
@@ -23,7 +23,11 @@
 		},
 
 		props: {
-			data: {
+			id: {
+				type: Number,
+				default: false
+			},
+			options: {
 				type: Object,
 				default: {}
 			},
@@ -43,17 +47,17 @@
 
 		methods: {
 			setTimeout() {
-				if (this.data.timeout > 0) {
+				if (this.options.timeout > 0) {
 					this.timeout = setTimeout(() => {
 						this.remove()
-					}, this.data.timeout)
+					}, this.options.timeout)
 				}
 			},
 			clearTimeout() {
 				clearTimeout(this.timeout)
 			},
 			remove () {
-				this.$el.parentNode.removeChild(this.$el)
+				this.$store.dispatch('snackbar/remove', { id: this.id })
 			},
 			close (callback) {
 				this.clearTimeout()
