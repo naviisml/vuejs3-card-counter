@@ -1,32 +1,6 @@
 <template>
-	<!-- Dealer Cards -->
-	<div class="flex-box py-3">
-		<h3>Dealer Card</h3>
-		<slider :data="cards" :action="this.addDealerCard" />
-	</div>
-
-	<!-- Selected Dealer Cards -->
-	<div class="d-flex playcard-container justify-content-center py-3">
-		<!-- Cards -->
-		<li class="d-inline-block" v-for="(value, key) in current.hand.dealer">
-			<div class="playcard d-flex flex-column">
-				<!-- Remove -->
-				<button class="btn btn-close btn-danger" v-on:click="this.removeDealerCard(key)">
-					<i class="fas fa-times"></i>
-				</button>
-				
-				<!-- Information -->
-				<strong class="text-left">{{ cards[value] ?? value }}</strong>
-				<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
-					<i class="far fa-dice"></i>
-				</h2>
-				<strong class="text-right">{{ cards[value] ?? value }}</strong>
-			</div>
-		</li>
-	</div>
-
 	<!-- Current Count -->
-	<div class="d-flex flex-box flex-grow-1 justify-content-center flex-column">
+	<div class="d-flex flex-box justify-content-center flex-column">
 		<div class="card card-soft">
 			<div class="row">
 				<div class="col-xs-6 col-md-6">
@@ -45,8 +19,34 @@
 		</div>
 	</div>
 
+	<!-- Dealer Cards -->
+	<div class="flex-box py-3">
+		<h3>Dealer Card</h3>
+		<slider :data="cards" :action="this.addDealerCard" />
+	</div>
+
+	<!-- Selected Dealer Cards -->
+	<div class="d-flex flex-grow-1 playcard-container justify-content-center py-3">
+		<!-- Cards -->
+		<li class="d-inline-block" v-for="(value, key) in current.hand.dealer">
+			<div class="playcard d-flex flex-column">
+				<!-- Remove -->
+				<button class="btn btn-close btn-danger" v-on:click="this.removeDealerCard(key)">
+					<i class="fas fa-times"></i>
+				</button>
+				
+				<!-- Information -->
+				<strong class="text-left">{{ cards[value] ?? value }}</strong>
+				<h2 class="d-flex flex-grow-1 align-items-center justify-content-center color-muted">
+					<i class="far fa-dice"></i>
+				</h2>
+				<strong class="text-right">{{ cards[value] ?? value }}</strong>
+			</div>
+		</li>
+	</div>
+
 	<!-- Selected Players Cards -->
-	<div class="d-flex playcard-container justify-content-center py-3">
+	<div class="d-flex flex-grow-1 playcard-container justify-content-center py-3">
 		<!-- Cards -->
 		<li class="d-inline-block" v-for="(value, key) in current.hand.player">
 			<div class="playcard d-flex flex-column">

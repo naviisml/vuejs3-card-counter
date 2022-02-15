@@ -98,6 +98,7 @@
 	position: relative;
 	overflow: auto;
 	width: 100%;
+	margin: 0;
 }
 .slider-container {
 	position: relative;
