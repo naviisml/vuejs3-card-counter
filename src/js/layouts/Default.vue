@@ -1,6 +1,6 @@
 <template>
-	<div class="container">
-		<div class="wrapcontent d-flex flex-column align-items-center py-5">
+	<div class="flex flex-col justify-center max-w-sm min-h-full px-6 py-12 mx-auto lg:px-8">
+		<div class="py-5 d-flex flex-column align-items-center">
 			<navigation />
 			
 			<router-view />

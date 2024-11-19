@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 /*
  *
  * Navel UI
@@ -5,11 +7,6 @@
  * Copyrights (c) navel.dev 2020
  */
 
-
-@import 'config';
-
-@import '@naveldev/ui';
-
-@import 'base/base';
-
-@import 'components/components';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
